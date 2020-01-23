@@ -8,22 +8,30 @@ body {
     align-items: center;
     height: 100vh;
     width: 100vw;
+    background-color: rgb(206, 56, 161);
 }
 
 .calc-container {
     
     max-width: 700px;
-    background-color: bisque;
+    background-color:#544fab;
     border: 1px solid black;
 }
 
 /*  Display Area  */
 main {
+    background-color: rgb(159, 237, 103);
+    margin: 10px;
+}
+
+.calc-output {
     display: grid;
     grid-template-columns: 400px;
     grid-template-rows: 100px;
     grid-gap: 10px;
-    background-color: yellowgreen;
+    color: #544fab;
+    text-align: end;
+    line-height: 100px;
 }
 
 /*   Buttons   */
@@ -32,6 +40,7 @@ main {
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(4, 100px);
     grid-gap: 10px;
+    margin: 10px;
 }
 
 .grid-button {
@@ -40,13 +49,13 @@ main {
     padding: 1rem 2rem;
     margin: 0;
     text-decoration: none;
-    background: #0069ed;
+    background: rgb(153, 183, 235);
     color: #ffffff;
     font-family: sans-serif;
-    font-size: 1rem;
+    font-size: 3rem;
     cursor: pointer;
     text-align: center;
-    transition: background 250ms ease-in-out, 
+    transition: background 70ms ease-in-out, 
                 transform 150ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -54,15 +63,15 @@ main {
 
 button:hover,
 button:focus {
-    background: #0053ba;
+    background: #c700f987;
 }
 
 button:focus {
-    outline: 1px solid #fff;
+    outline: 4px solid black;
     outline-offset: -4px;
 }
 
 button:active {
-    transform: scale(0.99);
-}
+    background-color: rgb(255, 0, 225);
+    transform: scale(0.85);
 }
