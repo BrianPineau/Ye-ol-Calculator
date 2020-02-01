@@ -1,5 +1,5 @@
 
-let dispNum, pendingVal, numBtn, calcBtn, clearBtn, dispString, btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+let dispNum, pendingVal, numBtn, calcBtn, clearBtn, evalStringArray, btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, evaluation;
 
 dispNum = document.getElementById('display-output');
 
@@ -17,6 +17,7 @@ numBtn = document.getElementsByClassName('num-btn');
 calcBtn = document.getElementsByClassName('calc-btn');
 
 clearBtn = document.getElementById('clear-scrn');
+backSpaceBtn = document.getElementById('back-space');
 
 // Event Listeners
 for (let i = 0; i < numBtn.length; i++) {
@@ -28,11 +29,12 @@ for (let i = 0; i < calcBtn.length; i++) {
 };
 
 clearBtn.addEventListener('click', clearDisplay);
+backSpaceBtn.addEventListener('click', backSpace);
 
 //  Output number to display
 dispVal = '0';
 pendingVal;
-dispString = [];
+evalStringArray = [];
 
 function displayNum (e) {
     btnText = e.target.innerText;
@@ -42,16 +44,24 @@ function displayNum (e) {
     }
 
     dispVal += btnText;
-    dispString.push(dispVal);
-    console.log(dispString);
     dispNum.innerText = dispVal;
 };
 
 function clearDisplay () {
     dispNum.innerText = '0';
     dispVal = '';
-    dispString = [];
-}
+    evalStringArray = [];
+};
+
+function backSpace () {
+    
+    dispVal = dispVal.slice(0, dispVal.length - 1);
+
+    if(dispVal === '') 
+    dispVal = '0';
+
+    dispNum.innerText = dispVal;
+};
 
 //  Do calculations
 function doCalculation (e) {
@@ -61,23 +71,37 @@ function doCalculation (e) {
         case '+':
             pendingVal = dispVal;
             dispVal = '0';
-            dispString.push('+');
-            dispNum.innerText = dispString;
+            dispNum.innerText = dispVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('+');
             break;
         case '-':
-
+            pendingVal = dispVal;
+            dispVal = '0';
+            dispNum.innerText = dispVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('-');
             break;
         case '*':
-
+            pendingVal = dispVal;
+            dispVal = '0';
+            dispNum.innerText = dispVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('*');
             break;
         case '÷':
-
+            pendingVal = dispVal;
+            dispVal = '0';
+            dispNum.innerText = dispVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('/');
             break;
         case '=':
-            dispString.push(dispVal)
-            evaluation = eval(dispString.join(' '));
+            evalStringArray.push(dispVal)
+            evaluation = eval(evalStringArray.join(' '));
             dispVal = evaluation + '';
-            
+            dispNum.innerText = dispVal;
+            evalStringArray = [];
         default:
             break;
     }
