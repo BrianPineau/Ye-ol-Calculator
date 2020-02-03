@@ -18,6 +18,7 @@ calcBtn = document.getElementsByClassName('calc-btn');
 
 clearBtn = document.getElementById('clear-scrn');
 backSpaceBtn = document.getElementById('back-space');
+decBtn = document.getElementById('dec-btn');
 
 // Event Listeners
 for (let i = 0; i < numBtn.length; i++) {
@@ -54,7 +55,6 @@ function clearDisplay () {
 };
 
 function backSpace () {
-    
     dispVal = dispVal.slice(0, dispVal.length - 1);
 
     if(dispVal === '') 
@@ -62,6 +62,15 @@ function backSpace () {
 
     dispNum.innerText = dispVal;
 };
+
+decBtn.onclick = function () {
+    if (!dispVal.includes('.')) {
+        dispVal += '.';
+    }
+    dispNum.innerText = dispVal;
+}
+
+
 
 //  Do calculations
 function doCalculation (e) {
